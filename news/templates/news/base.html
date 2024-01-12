@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'news/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'news/css/.css' %}">
+    <style>
+        .danger{
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid bg-dark">
+
+        {% include 'news/navbar.html' %}
+    </div>
+    <div class="container-fluid">
+    <div class="row">
+        {% block side %}
+        {% endblock side %}
+        {% block content %}
+        {% endblock content %}
+    </div>
+</div>
+</body>
+</html>

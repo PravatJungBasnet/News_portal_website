@@ -1,0 +1,46 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+{% if detail %}
+<div class="col-sm-5 mt-5 ms-5 shadow">
+    <div class="card" style="width: 40rem;">
+        <img src="{{detail.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{detail.title}}</h5>
+          <p class="card-text">{{detail.description}}.</p>
+          <p class="sm-5 text-center"> Published by <i>{{detail.user}}</i></p>
+          <p class="sm-5 text-center"> {{detail.created_at}}</i> </p>
+          <a href="{% url 'das' %}" class="btn btn-primary">Back to dashboard</a>
+        </div>
+      </div>
+
+
+
+</div>
+{% endif %}
+
+<div class="col-sm-6 mt-5 ms-5 shadow">
+  {% if rel_news %}
+  <h2 class="aleret alert-primary text-center">Related news to {{category}}</h2>
+  <br>
+{% for new in rel_news %}
+
+    <div class="card mt-5" style="width: 30rem; ">
+        <img src="{{new.image.url}}" class="card-img-top " alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{new.title}}</h5>
+          <br>
+        
+          <a href="{% url 'det' new.id %}" class="btn btn-primary">Read Full</a>
+        </div>
+      </div>
+      
+      {% endfor %}
+      {% else %}
+    <h2 class="alert alert-primary text-center">No any  related news </h2>
+    
+     
+      {% endif %}
+   
+</div>
+{% endblock content %}

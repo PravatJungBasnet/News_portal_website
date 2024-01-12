@@ -1,0 +1,73 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}
+Dashboard
+{% endblock title %}
+{% block content %}
+{% if request.user.is_authenticated   %}
+{% if perms.news.add_news %}
+
+
+<div class="add mt-5 ms-5">
+<a href="{% url 'add' %} " class="btn btn-primary">Add News</a>
+</div>
+{% endif %}
+
+{% endif %}
+<div class="col-sm-5 mt-5 ms-5 mx-auto shadow"  >
+    <div class="card " style="width: 40rem;">
+        <img src="{{first_news.image.url}}" class="card-img-top mt-5" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{first_news.title}}</h5>
+            <p class="card-text"> <a href="{% url 'det' first_news.id %}" class="btn btn-primary">Read Full</a>
+                
+        
+        </div>
+      </div>
+</div>
+<div class="col-sm-5 mt-5 ms-5 shadow">
+    {% for three in three_news %}
+
+    <div class="card" style="width: 35rem;">
+        <img src="{{three.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{three.title}}</h5>
+            <p class="card-text"> <a href="{% url 'det' three.id %}" class="btn btn-primary">Read Full</a>
+                
+          
+        
+        </div>
+      </div>
+      <br>
+      {% endfor %}
+</div>
+<hr>
+<br>
+<br>
+{% for category in category_news %}
+<h2 class="border-bottom  pb-1 ms-5">{{category.title}}  </h2>
+<br>
+<br>
+<div class="row my-4">
+    {% for news in category.news_set.all %}
+    {% if forloop.counter < 4 %}
+    <div class="col-md-3 ms-5">
+
+        <div class="card" style="width: 20rem;">
+            <img src="{{news.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{news.title}}</h5>
+                <p class="card-text"> <a href="{% url 'det' news.id %}" class="btn btn-primary">Read Full</a>
+                    
+            
+            </div>
+
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+<div>
+<br>
+<br>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-5 mt-5  mx-auto text-center shadow">
+    <h3 class=" text-center border-bottom alert alert-primary">All news</h3>
+    <form action="" method="GET" class="ms-5 ">
+        <input type="text" name="search_area" placeholder="Search category">
+        <input type="submit" value="Search" name="search" >
+      </form>
+   
+      
+{% for all_news in all %}
+
+<div class="card mt-5" style="width: 40rem;">
+    <img src="{{all_news.image.url}}" class="img-thumbnail" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{all_news.title}}</h5>
+        <p class="card-text"> <a href="{% url 'det' all_news.id %}" class="btn btn-primary">Read Full</a>
+            {% if request.user.is_authenticated %}
+            {% if perms.news.update_news %}
+            <a href="{% url 'up' all_news.id %}" class="btn btn-primary">Update</a>
+            <form action="{% url 'del' all_news.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Delete" class="btn btn-primary">
+            </form>
+            {% endif %}
+            
+            {% endif %}
+            <hr>
+    
+    </div>
+    <div>
+   
+    
+   
+    {% endfor %}
+    
+  </div>
+
+  
+  {% endblock content %}
+

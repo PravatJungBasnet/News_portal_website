@@ -1,0 +1,17 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+<form action="" method="POST" class="ms-5 mt-5 shadow">
+    {% csrf_token %}
+    {% for form in fm %}
+    {{form.label_tag }}
+    {{form}}
+    {{form.errors}}
+    <br>
+    <br>
+    {% endfor %}
+    <input type="Submit " value="Update" class="btn btn-primary">
+    <br>
+    <br>
+</form>
+{% endblock content %}

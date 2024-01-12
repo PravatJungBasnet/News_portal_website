@@ -1,0 +1,21 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-3 mx-auto shadow mt-5">
+    <h1 class="text-center mt-5 ms-5">Change Password</h1>
+    <form action="" method="post" class="mt-5">
+        {% csrf_token %}
+        {% for form in fm %}
+        {{form.label_tag}}
+        {{form}}
+        {{form.errors}}
+        <br>
+        <br>
+        {% endfor %}
+        <div class="text-center alert alert-primary rounded-pill border-0">
+        <input type="submit" class="btn btn-outline-primary rounded-pill border-0">
+    </div>
+    <br>
+    </form>
+    {% endblock content %}
+</div>

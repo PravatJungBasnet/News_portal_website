@@ -1,0 +1,19 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data" class="mt-5 ms-5 shadow" >
+    <h1 class="alert alert-primary text-center mt-5">Add News</h1>
+    {% csrf_token %}
+    {% for form in fm %}
+    {{form.label_tag}}
+     {{form}}
+     {{form.errors}}
+     <br>
+     <br>
+     {% endfor %}
+
+    <input type="submit" value="Add News" class="btn btn-primary">
+    <br>
+    <br>
+</form>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'news/base.html '%}
+{% load static %}
+{% block content %}
+<div class="col-lg-6 mt-5  mx-auto text-center shadow">
+    <h3 class="text-center border-bottom alert alert-primary">All Categories</h3>
+{% for cate in all_cate %}
+<div class="card mt-5 " style="width: 40rem;">
+    <img src="{{cate.image.url}}" class="img-thumbnail" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{cate.title}}</h5>
+        <p class="card-text"> <a href="{% url 'det' cate.id %}" class="btn btn-primary">Click to see all news related to {{cate.title}}</a>
+            <hr>
+    
+    </div>
+    <div>
+   
+    
+   
+    {% endfor %}
+
+    
+  </div>
+  
+  {% endblock content %}

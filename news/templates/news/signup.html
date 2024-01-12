@@ -1,0 +1,32 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-3 mx-auto mt-5 shadow">
+    <h2 class="text-center mt-3">Signup </h2>
+    <h3 class="text-center">
+        {% if messages %}
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+        {% endif %}
+    </h3>
+    <form action="" method="post" class="text-center mt-5">
+        {% csrf_token  %}
+        {% for form in fm %}
+        {{form.label_tag}}
+        {{form}}
+        {{form.errors}}
+        <br>
+        <br>
+        {% endfor %}
+        <div class="alert alert-primary rounded-pill ">
+        <input type="submit" value="Signup" class="btn btn-outline-primary border-0 rounded-pill">
+    </div>
+        <br>
+        
+    </form>
+    <div class="link text-center">
+    <a href="{% url 'log' %}" >Already have an accout?</a>
+</div>
+    <br>
+{% endblock content %}
